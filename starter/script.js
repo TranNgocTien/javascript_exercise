@@ -26,40 +26,37 @@ const restaurant = {
       close: 24,
     },
   },
-  order:function(starterIndex,mainIndex){
-    return [this.starterMenu[starterIndex],this.mainMenu[mainIndex]];
-  }
+  order: function (starterIndex, mainIndex) {
+    return [this.starterMenu[starterIndex], this.mainMenu[mainIndex]];
+  },
 };
 
-console.log(restaurant.order(2,0));
-let [starter,MainCourse]=restaurant.order(2,0);
-console.log(starter,MainCourse);
+console.log(restaurant.order(2, 0));
+let [starter, MainCourse] = restaurant.order(2, 0);
+console.log(starter, MainCourse);
 
-const {name, openingHours, categories}=restaurant;
+const { name, openingHours, categories } = restaurant;
 
-console.log(name,openingHours,categories);
-restaurant.numGuests=0;
-const guestCorrect=restaurant.numGuests??10;
+console.log(name, openingHours, categories);
+restaurant.numGuests = 0;
+const guestCorrect = restaurant.numGuests ?? 10;
 console.log(guestCorrect);
 
-const rest1={
-  name:'Capri',
-  numGuests:0,
-}
+const rest1 = {
+  name: 'Capri',
+  numGuests: 0,
+};
 
-const rest2={
-  name:'La Piazza',
-  owner:'Giovanni Rossi',
-}
+const rest2 = {
+  name: 'La Piazza',
+  owner: 'Giovanni Rossi',
+};
 
-rest1.numGuests ??=10;
-rest2.numGuests ??=10;
+rest1.numGuests ??= 10;
+rest2.numGuests ??= 10;
 
 console.log(rest1);
 console.log(rest2);
-
-
-
 
 // We're building a football betting app (soccer for my American friends 😅)!
 
@@ -117,37 +114,36 @@ const game = {
   },
 };
 //1
-const [players1, players2]=[...game.players];
+const [players1, players2] = [...game.players];
 console.log(players1);
 console.log(players2);
 //2
-const [gk,...fieldPlayers]=[...players1];
+const [gk, ...fieldPlayers] = [...players1];
 console.log(gk, fieldPlayers);
 //3
-const allPlayers=[...players1,...players2];
+const allPlayers = [...players1, ...players2];
 console.log(allPlayers);
 //4
-const players1Final=[...players1,'Thiago', 'Coutinho', 'Perisic'];
+const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
 console.log(players1Final);
 //5
-const{team1: team1,  x:draw, team2:team2}=game.odds;
+const { team1: team1, x: draw, team2: team2 } = game.odds;
 console.log(team1);
 console.log(draw);
 console.log(team2);
 //6
-const printGoals=function(...players){
+const printGoals = function (...players) {
   console.log(players);
   console.log(`${players} goals were scored`);
-}
+};
 
-printGoals(...game.scored); 
+printGoals(...game.scored);
 
-team1>team2 && console.log(`${team2} is likely to win`);
-team2>team1 && console.log(`${team1} is likely to win`);
+team1 > team2 && console.log(`${team2} is likely to win`);
+team2 > team1 && console.log(`${team1} is likely to win`);
 
 console.log(restaurant.openingHours.mon?.open);
-console.log(restaurant.order?.(0,1) ?? `Method does not exist`);
-
+console.log(restaurant.order?.(0, 1) ?? `Method does not exist`);
 
 // Let's continue with our football betting app!
 
@@ -168,47 +164,38 @@ console.log(restaurant.order?.(0,1) ?? `Method does not exist`);
 
 // GOOD LUCK 😀
 
-for(const [i,el] of game.scored.entries()){
-    console.log(`Goal ${i+1}: ${el}`);
+for (const [i, el] of game.scored.entries()) {
+  console.log(`Goal ${i + 1}: ${el}`);
 }
-let avg=0;
-const values=Object.values(game.odds)
+let avg = 0;
+const values = Object.values(game.odds);
 console.log(values);
-for(const value of values){
-  avg+=value;
+for (const value of values) {
+  avg += value;
 }
 console.log(avg);
-console.log(avg/values.length);
+console.log(avg / values.length);
 
-
-function avgCalc(x){
-  const odds=Object.entries(x);
-  for(const [i,el] of odds){
-    if(i==='team1'){
-      console.log(`Odd of victory ${game.team1} : ${el}`)
-    }else if(i==='team2'){
+function avgCalc(x) {
+  const odds = Object.entries(x);
+  for (const [i, el] of odds) {
+    if (i === 'team1') {
+      console.log(`Odd of victory ${game.team1} : ${el}`);
+    } else if (i === 'team2') {
       console.log(`Odd of victory ${game.team2} : ${el}`);
-    }else{
-      console.log(`Odd of draw ${el}`)
+    } else {
+      console.log(`Odd of draw ${el}`);
     }
   }
 }
 
 avgCalc(game.odds);
 
-const scores={};
-for(const player of game.scored){
-  scores[player]?scores[player]++:scores[player]=1;
+const scores = {};
+for (const player of game.scored) {
+  scores[player] ? scores[player]++ : (scores[player] = 1);
 }
 console.log(scores);
-
-
-
-
-
-
-
-
 
 /* 
 Let's continue with our football betting app! This time, we have a map with a log of the events that happened during the game. The values are the events themselves, and the keys are the minutes in which each event happened (a football game has 90 minutes plus some extra time).
@@ -236,55 +223,64 @@ const gameEvents = new Map([
   [92, '🔶 Yellow card'],
 ]);
 
-const events=[...new Set(gameEvents.values())];
+const events = [...new Set(gameEvents.values())];
 console.log(events);
 
 gameEvents.delete(64);
 console.log(gameEvents);
 
+console.log(`An event happened, on average, every ${90 / gameEvents.size}`);
 
-
-console.log(`An event happened, on average, every ${90/gameEvents.size}`);
-
-for(const [i,el] of [...gameEvents.entries()]){
-  console.log(`[${i<45?'FIRST HALF':'SECOND HALF'}] ${i}: ${el}`);
+for (const [i, el] of [...gameEvents.entries()]) {
+  console.log(`[${i < 45 ? 'FIRST HALF' : 'SECOND HALF'}] ${i}: ${el}`);
 }
 
-
-
-
-
-const checkBaggage= function(items)
-{
-  const baggage=items.toLowerCase();
-  if(baggage.includes('knife') || baggage.includes('gun')){
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase();
+  if (baggage.includes('knife') || baggage.includes('gun')) {
     console.log('you are NOT allowed on board');
-  }else{
+  } else {
     console.log('Welcome to aboard!');
   }
-}
+};
 checkBaggage('I have a laptop, some Food and a pocket Knife');
 checkBaggage('Socks and camera');
 checkBaggage('Got some snacks and a gun for protection');
 
-const capitalizeName=function(name){
-  const nameArr= name.split(' ');
-  let namesUpper=[];
-  for(let name of nameArr){
+const capitalizeName = function (name) {
+  const nameArr = name.split(' ');
+  let namesUpper = [];
+  for (let name of nameArr) {
     // namesUpper.push(name[0].toUpperCase()+name.slice(1));
-    namesUpper.push(name.replace(name[0],name[0].toUpperCase()));
+    namesUpper.push(name.replace(name[0], name[0].toUpperCase()));
   }
   console.log(namesUpper.join(' '));
-}
+};
 
 capitalizeName('jessica ann smith davis');
 capitalizeName('jonas schmedmann');
 
+const markCreditCard = function (number) {
+  const str = number + '';
 
-const markCreditCard=function(number){
-  const str=number+ '';
-
-  return str.slice(-4).padStart(str.length,'*');
-}
+  return str.slice(-4).padStart(str.length, '*');
+};
 console.log(markCreditCard('123213213214816257168'));
 console.log(markCreditCard(2136568587));
+
+const camelCase = function (names = ['meo_umm', 'tien_map']) {
+  const result = names.map(name => {
+    const characters = name.split('_'); // Array characters
+
+    const newWord = characters.map((c, index) => {
+      return index > 0 ? c[0].toUpperCase() + c.slice(1): c;
+    });
+
+    console.log('newWord', newWord);
+    return newWord.join("");
+  });
+
+  return result;
+};
+
+console.log(camelCase());
