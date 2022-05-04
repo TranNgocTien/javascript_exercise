@@ -268,19 +268,40 @@ const markCreditCard = function (number) {
 console.log(markCreditCard('123213213214816257168'));
 console.log(markCreditCard(2136568587));
 
-const camelCase = function (names = ['meo_umm', 'tien_map']) {
-  const result = names.map(name => {
-    const characters = name.split('_'); // Array characters
+// const camelCase = function (names = ['meo_umm', 'tien_map']) {
+//   const result = names.map(name => {
+//     const characters = name.split('_'); // Array characters
 
-    const newWord = characters.map((c, index) => {
-      return index > 0 ? c[0].toUpperCase() + c.slice(1): c;
-    });
+//     const newWord = characters.map((c, index) => {
+//       return index > 0 ? c[0].toUpperCase() + c.slice(1): c;
+//     });
 
-    console.log('newWord', newWord);
-    return newWord.join("");
+//     console.log('newWord', newWord);
+//     return newWord.join("");
+//   });
+
+//   return result;
+// };
+
+// console.log(camelCase());
+
+const camelCase= function(arrs){
+  const result=arrs.map(arr=>{
+    const characters=arr.split('_');
+    const newWord=characters.map((c,index)=>{
+      return index>0? c[0].toUpperCase()+c.slice(1).toLowerCase():c.toLowerCase();
+    })
+    return newWord.join('');
   });
+    return result;
+}
 
-  return result;
+const printCamelCase=function(arrs){
+  const arrName=camelCase(arrs);
+for(let i=0;i<arrName.length;i++){
+  
+  console.log(arrName[i].padEnd(Number(arrName[i].length+(i+1)),'✅'));
+  
+}
 };
-
-console.log(camelCase());
+printCamelCase(['underscore_case','first_name','Some_variable','calculate_AGE','deplayed_departure']);
